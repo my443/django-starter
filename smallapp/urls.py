@@ -19,7 +19,8 @@ from django.urls import path, include
 import dashboard.views
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
-    path('dashboard/', include('dashboard.urls')),
-    path('', include('dashboard.urls')),                ## This should be set to something else - but for now it is directed to the dashboard.
+    path("admin/",               admin.site.urls),
+    path('dashboard/',  include('dashboard.urls')),
+    path('',            include('dashboard.urls')),                ## This should be set to something else - but for now it is directed to the dashboard.
+    path("person/", include("django.contrib.auth.urls")),
 ]
