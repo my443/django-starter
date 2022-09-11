@@ -3,7 +3,8 @@ from django.shortcuts import render
 # Create your views here.
 from django.http import HttpResponse
 from django.template import loader
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required         ## For Authentication
+from django.views.generic.edit import UpdateView                  ## For Updating the view
 
 from .models import ProjectData
 
@@ -19,4 +20,20 @@ def hello(request):
       'project_data': project_data
    }
    ## context = {}
-   return HttpResponse(template.render(context, request))
+
+   return render(request, 'welcome.html', context)       ## This seems to be an easier way to return a template.
+                                                         ## https://docs.djangoproject.com/en/4.1/intro/tutorial03/
+
+   #return HttpResponse(template.render(context, request))
+
+##@login_required(login_url='/person/login/')
+class Update(UpdateView):
+   model = ProjectData                             # model
+   fields = '__all__'                              # fields / if you want to select all fields, use "__all__"
+   fields = ['project_name', 'description', 'record_date']     # but if you are doing specific fields, you have to name them.
+   template_name = 'update_project.html'              # template for updating
+   success_url = "/dashboard"                          # posts list url
+
+   def post(self, request, *args, **kwargs):
+      ##self.referer = request.session.get("login_referer", "")
+      return super().post(request, *args, **kwargs)

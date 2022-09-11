@@ -15,31 +15,34 @@
     {% if project_data %}
     <ul>
     {# project_data #}
+
+    <h3><a href="/dashboard/{{ project.id }}/">Add a new record</a></h3>
 <table border = "1">
-<tr>
-    <th>Category</th>
-    <th>Record Date</th>
-    <th>Project Name</th>
-    <th>Project Description</th>
-    <th>Rate</th>
-    <th>Hours</th>
-    <th>Dollars</th>
-    <th>Actions</th>
-</tr>
+    <tr>
+        <th>Category</th>
+        <th>Record Date</th>
+        <th>Project Name</th>
+        <th>Project Description</th>
+        <th>Rate</th>
+        <th>Hours</th>
+        <th>Dollars</th>
+        <th>Actions</th>
+    </tr>
+    {#  #}
     {% for project in project_data %}
     <tr>
-    <td>{{ project.category }}</td>
-    <td>{{ project.record_date }}</td>
-    <td>{{ project.project_name }}</td>
-    <td>{{ project.description }}</td>
-    <td>{{ project.rate }}</td>
-    <td>{{ project.hours }}</td>
-    <td>{{ project.dollars }}</td>
-    <td>
-    <a href="/dashboard/{{ project.id }}/">Show</a>
-    <a href="/dashboard/{{ project.id }}/">Edit</a>
-    <a href="/dashboard/{{ project.id }}/">Delete</a>
-    </td>
+        <td>{{ project.category }}</td>
+        <td>{{ project.record_date }}</td>
+        <td>{{ project.project_name }}</td>
+        <td>{{ project.description }}</td>
+        <td>{{ project.rate }}</td>
+        <td>{{ project.hours }}</td>
+        <td>{{ project.dollars }}</td>
+        <td>
+            <a href="/dashboard/{{ project.id }}/">Show</a>
+            <a href="{% url 'row_update' project.id %}">Edit</a>
+            <a href="/dashboard/{{ project.id }}/">Delete</a>
+        </td>
     </tr>
     {% endfor %}
 

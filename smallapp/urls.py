@@ -23,4 +23,5 @@ urlpatterns = [
     path('dashboard/',  include('dashboard.urls')),
     path('',            include('dashboard.urls')),                ## This should be set to something else - but for now it is directed to the dashboard.
     path("person/", include("django.contrib.auth.urls")),
+
 ]
