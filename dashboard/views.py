@@ -3,9 +3,11 @@ from django.shortcuts import render
 # Create your views here.
 from django.http import HttpResponse
 from django.template import loader
+from django.contrib.auth.decorators import login_required
 
 from .models import ProjectData
 
+@login_required(login_url='/person/login/')
 def hello(request):
    ## text = """<h1>Welcome to your dashboard!!</h1>"""
    ## return HttpResponse(text)
