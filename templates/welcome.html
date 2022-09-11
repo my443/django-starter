@@ -11,4 +11,16 @@
   <p>You are not logged in</p>
   <a href="{% url 'login' %}">Log In</a>
 {% endif %}
+    <h1>Data View</h1>
+    {% if project_data %}
+    <ul>
+    {# project_data #}
+
+    {% for project in project_data %}
+        <li><a href="/dashboard/{{ project.id }}/">{{ project.project_name }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No project records are available.</p>
+{% endif %}
 {% endblock %}
