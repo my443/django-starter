@@ -1,0 +1,25 @@
+<!-- templates/home.html -->
+{% extends 'base.html' %}
+
+{% block title %}Update Project Data{% endblock %}
+
+{% block content %}
+    <form method="POST">{% csrf_token %}
+
+    <!-- form variable -->
+     {#    form.as_p #}
+        <!-- If you have selected __all__ for the form fields,
+                then you have to update all of the form fields.
+                Otherwise it won't submit.
+
+                If you just selected some of the fields,
+                    then you have to include them all for submission.
+                -->
+
+        {{ form.project_name }}
+        {{ form.description }}
+        {{ form.record_date }}
+
+      <input type="submit" name="submit">
+    </form>
+{% endblock %}
